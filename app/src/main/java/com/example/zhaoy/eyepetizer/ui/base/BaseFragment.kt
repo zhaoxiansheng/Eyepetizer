@@ -1,4 +1,4 @@
-package com.example.zhaoy.eyepetizer.base
+package com.example.zhaoy.eyepetizer.ui.base
 
 import android.support.v4.app.Fragment
 import com.example.zhaoy.eyepetizer.R
@@ -31,7 +31,8 @@ abstract class BaseFragment(tabId: Int) : Fragment(), RxNetManager {
     }
 
     open fun setupToolbar(): Boolean {
-        if (tabId != currentFragment) {//解决mainactivity fragment切换时，toolbar更新bug（homefragment中recyclerview滚动会更新toolbar，如果不控制，在滚动过程中切换了tab，toolbar会依旧被更新）
+        //解决MainActivity fragment切换时，toolbar更新bug（homefragment中recyclerview滚动会更新toolbar，如果不控制，在滚动过程中切换了tab，toolbar会依旧被更新）
+        if (tabId != currentFragment) {
             return true
         }
         return false

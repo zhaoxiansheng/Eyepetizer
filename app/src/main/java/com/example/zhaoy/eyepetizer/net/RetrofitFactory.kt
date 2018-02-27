@@ -28,7 +28,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 object RetrofitFactory {
 
     private val TIMEOUT: Long = 30
-    private val BASE_URL: String = "http://baobab.kaiyanapp.com/api/";
+    private val BASE_URL: String = "http://baobab.kaiyanapp.com/api/v4/"
 
     private val httpClient = OkHttpClient.Builder()
             .addInterceptor(NetworkInterceptor())

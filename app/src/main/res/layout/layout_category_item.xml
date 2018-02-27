@@ -9,7 +9,7 @@
         android:scaleType="fitXY"
         android:layout_height="200dp"/>
 
-    <com.xk.eyepetizer.ui.view.common.PercentTextView
+    <TextView
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="200dp"

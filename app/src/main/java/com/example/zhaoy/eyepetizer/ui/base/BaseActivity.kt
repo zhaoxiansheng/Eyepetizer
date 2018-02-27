@@ -1,4 +1,4 @@
-package com.example.zhaoy.eyepetizer.base
+package com.example.zhaoy.eyepetizer.ui.base
 
 import android.support.v7.app.AppCompatActivity
 import io.reactivex.disposables.CompositeDisposable

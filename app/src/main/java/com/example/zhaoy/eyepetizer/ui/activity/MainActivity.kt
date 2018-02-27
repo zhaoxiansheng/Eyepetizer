@@ -1,9 +1,9 @@
-package com.example.zhaoy.eyepetizer.activity
+package com.example.zhaoy.eyepetizer.ui.activity
 
 import android.os.Bundle
 import com.example.zhaoy.eyepetizer.R
-import com.example.zhaoy.eyepetizer.base.BaseActivity
-import com.example.zhaoy.eyepetizer.base.currentFragment
+import com.example.zhaoy.eyepetizer.ui.base.BaseActivity
+import com.example.zhaoy.eyepetizer.ui.base.currentFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -21,7 +21,7 @@ class MainActivity : BaseActivity() {
         rg_root.setOnCheckedChangeListener { _, checkedId -> chooseFragment(checkedId) }
     }
 
-    private fun chooseFragment(checkedId : Int){
+    private fun chooseFragment(checkedId: Int) {
         currentFragment = checkedId
     }
 }

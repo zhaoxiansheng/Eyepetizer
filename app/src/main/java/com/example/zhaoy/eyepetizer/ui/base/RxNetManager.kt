@@ -1,4 +1,4 @@
-package com.example.zhaoy.eyepetizer.base
+package com.example.zhaoy.eyepetizer.ui.base
 
 import io.reactivex.disposables.Disposable
 
