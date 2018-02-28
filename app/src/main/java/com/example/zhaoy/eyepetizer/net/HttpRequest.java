@@ -16,17 +16,9 @@ public class HttpRequest {
 
     /**
      * 分类界面请求
-     * @param isShow 是否展示请求弹窗
      */
-    public static void getCategories(boolean isShow){
+    public static Observable<ArrayList<ResponseClasses.Categories>> getCategories(){
         Observable<ArrayList<ResponseClasses.Categories>> categories = MyApplication.iApi.getCategories();
-        RetrofitFactory.INSTANCE.doHttpRequest(categories, new BaseObserver<ArrayList<ResponseClasses.Categories>>(MyApplication.getContext(), isShow) {
-            @Override
-            protected void onSuccess(ArrayList<ResponseClasses.Categories> categories) {
-                for (ResponseClasses.Categories c: categories) {
-                    System.out.println(c.getName());
-                }
-            }
-        });
+        return RetrofitFactory.INSTANCE.doHttpRequest(categories);
     }
 }

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.zhaoy.eyepetizer.net.IApi;
 import com.example.zhaoy.eyepetizer.net.RetrofitFactory;
+import com.example.zhaoy.eyepetizer.utils.DisplayManager;
 
 
 public class MyApplication extends Application {
@@ -58,6 +59,8 @@ public class MyApplication extends Application {
         });
 
         iApi = RetrofitFactory.INSTANCE.getRetrofitGsonService();
+
+        DisplayManager.INSTANCE.init(this);
     }
 
     public static Context getContext(){

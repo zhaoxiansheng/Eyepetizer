@@ -17,6 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.util.*
 
 /**
  * Created on 2018/2/25.
@@ -51,11 +52,11 @@ object RetrofitFactory {
             .build()
             .create(IApi::class.java)
 
-    fun <T> doHttpRequest(pObservable: Observable<T>, baseObserver: BaseObserver<T>) {
+    fun <T> doHttpRequest(pObservable: Observable<T>): Observable<T>{
         val observable = pObservable
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-        observable.subscribe(baseObserver)
+        return observable
     }
 }
