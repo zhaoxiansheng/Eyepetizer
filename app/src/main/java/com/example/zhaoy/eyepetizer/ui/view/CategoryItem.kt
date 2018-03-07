@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.zhaoy.eyepetizer.R
 import com.example.zhaoy.eyepetizer.bean.ResponseClasses
 import kotlinx.android.synthetic.main.layout_category_item.view.*
@@ -24,6 +25,11 @@ class CategoryItem : FrameLayout {
 
     fun setData(category: ResponseClasses.Categories) {
         tv_name.text = "#"+category.name
-        Glide.with(context).load(category.bgPicture).centerCrop().into(iv_category)
+        Glide.with(context)
+                .load(category.bgPicture)
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .dontAnimate()
+                .into(iv_category)
     }
 }

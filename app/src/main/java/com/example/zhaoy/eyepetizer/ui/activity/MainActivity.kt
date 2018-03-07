@@ -42,7 +42,7 @@ class MainActivity : BaseActivity() {
 
             if (tab == checkedId) {
                 aFragment?.let {
-                    aFragment.setupToolbar()
+                    it.setupToolbar()
                     beginTransaction.show(it)
                 }
             } else {

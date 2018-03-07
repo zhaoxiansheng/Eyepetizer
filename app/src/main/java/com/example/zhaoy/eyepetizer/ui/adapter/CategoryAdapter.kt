@@ -5,7 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.zhaoy.eyepetizer.bean.ResponseClasses
 import com.example.zhaoy.eyepetizer.ui.view.CategoryItem
+import com.orhanobut.logger.Logger
 
+/**
+ * Created by zhaoy on 2018/2/28.
+ */
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     val data by lazy { ArrayList<ResponseClasses.Categories>() }
@@ -33,10 +37,13 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val itemViewType = getItemViewType(position)
+        holder?.itemView?.setTag(data[position].bgPicture)
         when (itemViewType) {
             TYPE_STANDARD -> {
-                (holder?.itemView as CategoryItem).setData(data[position])
-                //todo 未处理点击事件
+                if (data[position].bgPicture == holder?.itemView?.getTag()){
+                    (holder.itemView as CategoryItem).setData(data[position])
+                    holder.itemView.setOnClickListener { onClick?.invoke(data[position]) }
+                }
             }
         }
     }
@@ -52,4 +59,6 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     }
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+
+    var onClick: ((ResponseClasses.Categories) -> Unit)? = {}
 }
