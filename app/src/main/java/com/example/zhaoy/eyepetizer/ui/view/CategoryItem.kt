@@ -3,6 +3,7 @@ package com.example.zhaoy.eyepetizer.ui.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import com.bumptech.glide.DrawableRequestBuilder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.zhaoy.eyepetizer.R
@@ -30,6 +31,7 @@ class CategoryItem : FrameLayout {
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .dontAnimate()
+                .dontTransform()
                 .into(iv_category)
     }
 }

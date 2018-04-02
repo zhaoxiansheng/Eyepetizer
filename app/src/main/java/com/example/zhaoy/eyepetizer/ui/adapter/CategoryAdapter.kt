@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.zhaoy.eyepetizer.bean.ResponseClasses
 import com.example.zhaoy.eyepetizer.ui.view.CategoryItem
-import com.orhanobut.logger.Logger
 
 /**
  * Created by zhaoy on 2018/2/28.

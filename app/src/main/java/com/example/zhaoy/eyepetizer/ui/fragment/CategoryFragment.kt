@@ -18,6 +18,7 @@ import com.example.zhaoy.eyepetizer.ui.adapter.CategoryAdapter
 import com.example.zhaoy.eyepetizer.ui.base.BaseFragment
 import com.example.zhaoy.eyepetizer.ui.base.tabsId
 import com.example.zhaoy.eyepetizer.utils.DisplayManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_category.*
 import java.util.*
 
@@ -26,11 +27,7 @@ import java.util.*
  */
 class CategoryFragment : BaseFragment(tabId = tabsId[1]), CategoryContract.IView {
 
-    val categoryPresenter: CategoryPresenter
-
-    init {
-        categoryPresenter = CategoryPresenter(this)
-    }
+    private val categoryPresenter: CategoryPresenter = CategoryPresenter(this)
 
     override fun showCategory(categories: ArrayList<ResponseClasses.Categories>) {
         adapter.setData(categories)
@@ -102,5 +99,16 @@ class CategoryFragment : BaseFragment(tabId = tabsId[1]), CategoryContract.IView
             setupToolbar()
             isFirst = false
         }
+    }
+
+    override fun setupToolbar(): Boolean {
+        if (super.setupToolbar()) {
+            return true
+        }
+        //todo 需要研究 不知道为什么不可以直接调用toolbar去设置
+        toolbar.setBackgroundColor(0xddffffff.toInt())
+        iv_search.setImageResource(R.mipmap.ic_action_search)
+        tv_bar_title.setText("分类")
+        return true
     }
 }

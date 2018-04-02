@@ -9,7 +9,8 @@
         android:id="@+id/category_header"
         android:layout_width="match_parent"
         android:layout_height="290dp"
-        android:fitsSystemWindows="true"></com.xk.eyepetizer.ui.view.category.CategoryHeaderView>
+        android:fitsSystemWindows="true">
+    </com.xk.eyepetizer.ui.view.category.CategoryHeaderView>
 
 
     <android.support.v7.widget.RecyclerView
