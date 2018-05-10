@@ -8,6 +8,7 @@ import com.example.zhaoy.eyepetizer.ui.base.BaseFragment
 import com.example.zhaoy.eyepetizer.ui.base.currentFragment
 import com.example.zhaoy.eyepetizer.ui.base.tabsId
 import com.example.zhaoy.eyepetizer.ui.fragment.CategoryFragment
+import com.example.zhaoy.eyepetizer.ui.fragment.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -21,7 +22,7 @@ class MainActivity : BaseActivity() {
 
     private fun setRadio() {
         rb_category.isChecked = true
-        chooseFragment(R.id.rb_category)
+        chooseFragment(R.id.rb_home)
         rg_root.setOnCheckedChangeListener { _, checkedId -> chooseFragment(checkedId) }
     }
 
@@ -33,6 +34,7 @@ class MainActivity : BaseActivity() {
         val fragment: Fragment? = supportFragmentManager.findFragmentByTag(checkedId.toString())
         if (fragment == null) {
             when (checkedId) {
+                R.id.rb_home -> beginTransaction.add(R.id.fl_content, HomeFragment(), checkedId.toString())
                 R.id.rb_category -> beginTransaction.add(R.id.fl_content, CategoryFragment(), checkedId.toString())
             }
         }

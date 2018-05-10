@@ -4,9 +4,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.example.zhaoy.eyepetizer.bean.Item
+import com.example.zhaoy.eyepetizer.toActivityWithSerializable
+import com.example.zhaoy.eyepetizer.ui.view.common.StandardVideoItem
+import com.example.zhaoy.eyepetizer.ui.view.home.banner.HomeBanner
+import com.example.zhaoy.eyepetizer.utils.DisplayManager
+import com.example.zhaoy.eyepetizer.ui.activity.DetailActivity
+import com.example.zhaoy.eyepetizer.ui.view.home.HomeTextHeaderItem
 
 /**
- * Created by xuekai on 2017/8/23.
+ * Created by zhaoy on 2018/5/9.
  */
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 

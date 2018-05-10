@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.zhaoy.eyepetizer.R
 import com.example.zhaoy.eyepetizer.TAG
 import com.example.zhaoy.eyepetizer.bean.Item
+import com.example.zhaoy.eyepetizer.player.EmptyControlVideo
 import com.shuyu.gsyvideoplayer.utils.GSYVideoType
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer
 import kotlinx.android.synthetic.main.item_home_banner.view.*

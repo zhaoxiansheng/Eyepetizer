@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.xk.eyepetizer.player.EmptyControlVideo
+    <com.example.zhaoy.eyepetizer.player.EmptyControlVideo
         android:id="@+id/videoView"
         android:background="@android:color/black"
         android:layout_width="match_parent"
@@ -18,5 +18,6 @@
     <View
         android:background="#55000000"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></View>
+        android:layout_height="match_parent">
+    </View>
 </FrameLayout>

@@ -105,10 +105,10 @@ class CategoryFragment : BaseFragment(tabId = tabsId[1]), CategoryContract.IView
         if (super.setupToolbar()) {
             return true
         }
-        //todo 需要研究 不知道为什么不可以直接调用toolbar去设置
-        toolbar.setBackgroundColor(0xddffffff.toInt())
-        iv_search.setImageResource(R.mipmap.ic_action_search)
-        tv_bar_title.setText("分类")
+        super.setupToolbar()
+        activity?.toolbar?.setBackgroundColor(0xddffffff.toInt())
+        activity?.iv_search?.setImageResource(R.mipmap.ic_action_search)
+        activity?.tv_bar_title?.setText("分类")
         return true
     }
 }

@@ -29,12 +29,13 @@ import java.util.*
 object RetrofitFactory {
 
     private val TIMEOUT: Long = 30
-    private val BASE_URL: String = "http://baobab.kaiyanapp.com/api/v4/"
+    private val BASE_URL: String = "http://baobab.kaiyanapp.com/api/"
 
     private val httpClient = OkHttpClient.Builder()
             .addInterceptor(NetworkInterceptor())
             .addInterceptor { chain ->
                 val builder = chain.request().newBuilder()
+                Logger.d(chain.request().url().toString())
                 chain.proceed(builder.build())
             }
             .addInterceptor(HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Logger.d(message) }))

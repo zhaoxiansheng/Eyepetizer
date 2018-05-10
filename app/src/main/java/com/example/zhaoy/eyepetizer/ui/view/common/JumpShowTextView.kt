@@ -1,12 +1,18 @@
-package com.example.zhaoy.eyepetizer.ui.view
+package com.example.zhaoy.eyepetizer.ui.view.common
 
 import android.content.Context
+import android.graphics.Color
+import android.text.TextUtils
 import android.util.AttributeSet
+import android.view.View
 import android.widget.FrameLayout
-import com.example.zhaoy.eyepetizer.R.styleable.PercentTextView
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class JumpShowTextView : FrameLayout {
-
 
     val allTime = 700
 
@@ -87,7 +93,9 @@ class JumpShowTextView : FrameLayout {
                     val intervalTime = allTime / it.length
                     subscribe = Observable.interval(intervalTime.toLong(), TimeUnit.MILLISECONDS)
                             .take(it.length.toLong())
-                            .io_main()
+                            .subscribeOn(Schedulers.io())
+                            .unsubscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ i ->
                                 content = content + it[i.toInt()]
                                 realTextView?.setText(content)

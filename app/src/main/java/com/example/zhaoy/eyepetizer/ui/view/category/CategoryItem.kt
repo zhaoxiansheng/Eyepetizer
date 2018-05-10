@@ -1,4 +1,4 @@
-package com.example.zhaoy.eyepetizer.ui.view
+package com.example.zhaoy.eyepetizer.ui.view.category
 
 import android.content.Context
 import android.util.AttributeSet
