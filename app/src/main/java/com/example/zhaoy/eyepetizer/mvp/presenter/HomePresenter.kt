@@ -6,17 +6,13 @@ import com.example.zhaoy.eyepetizer.mvp.contract.HomeContract
 import com.example.zhaoy.eyepetizer.mvp.model.HomeModel
 
 class HomePresenter(view: HomeContract.IView) : HomeContract.IPresenter {
-    val homeView: HomeContract.IView
-    var nextPageUrl: String? = null
-    val homeModel: HomeModel by lazy {
+    private val homeView: HomeContract.IView = view
+    private var nextPageUrl: String? = null
+    private val homeModel: HomeModel by lazy {
         HomeModel()
     }
 
-    var bannerHomeBean: HomeBean? = null
-
-    init {
-        homeView = view
-    }
+    private var bannerHomeBean: HomeBean? = null
 
 
     @SuppressLint("CheckResult")

@@ -16,10 +16,10 @@ class BannerAdapter : PagerAdapter() {
     }
 
     override fun getCount(): Int {
-        if (datas == null) {
-            return 0
+        return if (datas == null) {
+            0
         } else {
-            return datas!!.size
+            datas!!.size
         }
     }
 

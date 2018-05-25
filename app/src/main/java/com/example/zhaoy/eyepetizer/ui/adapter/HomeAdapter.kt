@@ -17,7 +17,7 @@ import com.example.zhaoy.eyepetizer.ui.view.home.HomeTextHeaderItem
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
 
-    var isNewBanner = false
+    private var isNewBanner = false
 
     //只会在banner数据请求到的时候set，其他都是add，所以通过set可以获取到banner的count
     var itemList: ArrayList<Item> = ArrayList()

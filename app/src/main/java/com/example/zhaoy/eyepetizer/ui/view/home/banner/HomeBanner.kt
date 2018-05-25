@@ -51,7 +51,7 @@ class HomeBanner : FrameLayout {
 
                 setTitleSlogan(position)
 
-                for (i in 0..indicators.childCount - 1) {
+                for (i in 0 until indicators.childCount) {
                     if (i == position) {
                         (indicators.getChildAt(i) as Indicator).setState(true)
                     } else {
@@ -124,7 +124,7 @@ class HomeBanner : FrameLayout {
     }
 
 
-    fun setIndicators(bannerDatas: ArrayList<Item>) {
+    private fun setIndicators(bannerDatas: ArrayList<Item>) {
         indicators.removeAllViews()
         bannerDatas.forEach { _ ->
             val indicator = Indicator(context)

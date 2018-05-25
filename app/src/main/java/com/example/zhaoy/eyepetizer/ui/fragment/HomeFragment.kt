@@ -28,15 +28,11 @@ import java.util.*
 
 class HomeFragment : BaseFragment(tabId = tabsId[0]), HomeContract.IView {
 
-    val simpleDateFormat by lazy { SimpleDateFormat("- MMM. dd, 'Brunch' -", Locale.ENGLISH) }
+    private val simpleDateFormat by lazy { SimpleDateFormat("- MMM. dd, 'Brunch' -", Locale.ENGLISH) }
 
-    val homeAdapter: HomeAdapter by lazy { HomeAdapter() }
+    private val homeAdapter: HomeAdapter by lazy { HomeAdapter() }
 
-    var presenter: HomePresenter
-
-    init {
-        presenter = HomePresenter(this)
-    }
+    var presenter: HomePresenter = HomePresenter(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, null)
@@ -54,7 +50,7 @@ class HomeFragment : BaseFragment(tabId = tabsId[0]), HomeContract.IView {
 
         activity?.tv_bar_title?.typeface = Typeface.createFromAsset(activity?.assets, "fonts/Lobster-1.4.otf")
         val paint = activity?.tv_bar_title?.paint
-        paint?.setFakeBoldText(true)
+        paint?.isFakeBoldText = true
 
         rv_home.adapter = homeAdapter
         rv_home.layoutManager = LinearLayoutManager(activity)
@@ -68,11 +64,11 @@ class HomeFragment : BaseFragment(tabId = tabsId[0]), HomeContract.IView {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    val childCount = rv_home.getChildCount()
-                    val itemCount = rv_home.layoutManager.getItemCount()
+                    val childCount = rv_home.childCount
+                    val itemCount = rv_home.layoutManager.itemCount
                     val firstVisibleItem = (rv_home.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
                     if (firstVisibleItem + childCount == itemCount) {
-                        Log.d(TAG, "到底了");
+                        Log.d(TAG, "到底了")
                         if (!loadingMore) {
                             loadingMore = true
                             onLoadMore()
@@ -90,7 +86,7 @@ class HomeFragment : BaseFragment(tabId = tabsId[0]), HomeContract.IView {
     }
 
 
-    val linearLayoutManager by lazy {
+    private val linearLayoutManager by lazy {
         rv_home.layoutManager as LinearLayoutManager
     }
 
@@ -106,7 +102,7 @@ class HomeFragment : BaseFragment(tabId = tabsId[0]), HomeContract.IView {
         if (findFirstVisibleItemPosition == 0) {//设置为透明
             activity?.toolbar?.setBackgroundColor(0x00000000)
             activity?.iv_search?.setImageResource(R.mipmap.ic_action_search_white)
-            activity?.tv_bar_title?.setText("")
+            activity?.tv_bar_title?.text = ""
         } else {
             if (homeAdapter.itemList.size > 1) {
 
@@ -115,9 +111,9 @@ class HomeFragment : BaseFragment(tabId = tabsId[0]), HomeContract.IView {
                 val itemList = homeAdapter.itemList
                 val item = itemList[findFirstVisibleItemPosition + homeAdapter.bannerItemListCount - 1]
                 if (item.type == "textHeader") {
-                    activity?.tv_bar_title?.setText(item.data?.text)
+                    activity?.tv_bar_title?.text = item.data?.text
                 } else {
-                    activity?.tv_bar_title?.setText(simpleDateFormat.format(item.data?.date))
+                    activity?.tv_bar_title?.text = simpleDateFormat.format(item.data?.date)
                 }
             }
 
@@ -148,7 +144,7 @@ class HomeFragment : BaseFragment(tabId = tabsId[0]), HomeContract.IView {
     override fun onResume() {
         super.onResume()
         if (rv_home.getChildAt(0) is HomeBanner) {
-            for (index in 0..(rv_home.getChildAt(0) as HomeBanner).viewPager.childCount - 1) {
+            for (index in 0 until (rv_home.getChildAt(0) as HomeBanner).viewPager.childCount) {
                 val homeBannerItem = (rv_home.getChildAt(0) as HomeBanner).viewPager.getChildAt(index) as HomeBannerItem
                 if (homeBannerItem.isVideo) {
                     homeBannerItem.setUpView()//重新设置视频

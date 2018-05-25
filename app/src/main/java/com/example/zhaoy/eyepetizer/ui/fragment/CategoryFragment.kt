@@ -13,7 +13,7 @@ import com.example.zhaoy.eyepetizer.bean.ResponseClasses
 import com.example.zhaoy.eyepetizer.mvp.contract.CategoryContract
 import com.example.zhaoy.eyepetizer.mvp.presenter.CategoryPresenter
 import com.example.zhaoy.eyepetizer.toActivityWithParceable
-import com.example.zhaoy.eyepetizer.ui.activity.WebViewActivity
+import com.example.zhaoy.eyepetizer.ui.activity.TestActivity
 import com.example.zhaoy.eyepetizer.ui.adapter.CategoryAdapter
 import com.example.zhaoy.eyepetizer.ui.base.BaseFragment
 import com.example.zhaoy.eyepetizer.ui.base.tabsId
@@ -88,7 +88,7 @@ class CategoryFragment : BaseFragment(tabId = tabsId[1]), CategoryContract.IView
         })
 
         adapter.onClick = { categories ->
-            activity?.toActivityWithParceable<WebViewActivity>(categories)
+            activity?.toActivityWithParceable<TestActivity>(categories)
         }
         categoryPresenter.requestData()
     }

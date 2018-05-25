@@ -5,7 +5,7 @@ import android.view.View
 
 class HomeBannerTransformer : ViewPager.PageTransformer {
     override fun transformPage(page: View, position: Float) {
-        val width: Int = page?.width!!
+        val width: Int = page.width
         //以向左滑动为例
 //        if (position <= 0) {//中间的
         page.scrollX = (position * width).toInt() / 4 * 3

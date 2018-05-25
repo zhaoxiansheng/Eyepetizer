@@ -14,27 +14,27 @@ import java.util.concurrent.TimeUnit
 
 class JumpShowTextView : FrameLayout {
 
-    val allTime = 700
+    private val allTime = 700
 
     constructor(context: Context?) : this(context, null)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-    }
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
-    var placeHolder: PercentTextView? = null
+    private var placeHolder: PercentTextView? = null
 
-    var realTextView: PercentTextView? = null
-    var withAnimation = true
+    private var realTextView: PercentTextView? = null
+
+    private var withAnimation = true
 
     var text: String? = ""
         set(value) {
             reCreateObject()
             init()
             field = value
-            placeHolder?.setText(value)
+            placeHolder?.text = value
             start()
         }
 
-    fun reCreateObject() {
+    private fun reCreateObject() {
         placeHolder = PercentTextView(context)
         placeHolder?.textSize = textSize
         placeHolder?.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
@@ -43,7 +43,7 @@ class JumpShowTextView : FrameLayout {
         realTextView = PercentTextView(context)
         realTextView?.setTextColor(color)
         realTextView?.textSize = textSize
-        realTextView?.paint?.setFakeBoldText(isBold)
+        realTextView?.paint?.isFakeBoldText = isBold
         realTextView?.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
 
         if (singline) {
@@ -56,7 +56,6 @@ class JumpShowTextView : FrameLayout {
     }
 
     private fun init() {
-//        setBackgroundColor(0xff00ff00.toInt())
         removeAllViews()
         addView(placeHolder)
         addView(realTextView)
@@ -67,17 +66,17 @@ class JumpShowTextView : FrameLayout {
 
     var isBold: Boolean = false
     var color: Int = Color.BLACK
-    var singline = false
+    private var singline = false
 
     var textSize: Float = 52F
 
     //线程正在运行
-    var isRun: Boolean = false
+    private var isRun: Boolean = false
 
     var marginBottom: Float = 0f
 
 
-    var subscribe: Disposable? = null
+    private var subscribe: Disposable? = null
 
     fun start() {
         if (withAnimation) {
@@ -89,7 +88,7 @@ class JumpShowTextView : FrameLayout {
             isRun = true
             text?.let {
 
-                if (it.length > 0) {
+                if (it.isNotEmpty()) {
                     val intervalTime = allTime / it.length
                     subscribe = Observable.interval(intervalTime.toLong(), TimeUnit.MILLISECONDS)
                             .take(it.length.toLong())
@@ -97,15 +96,15 @@ class JumpShowTextView : FrameLayout {
                             .unsubscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ i ->
-                                content = content + it[i.toInt()]
-                                realTextView?.setText(content)
+                                content += it[i.toInt()]
+                                realTextView?.text = content
                             }, { e -> e.printStackTrace() }, { isRun = false }
                             )
                 }
 
             }
         } else {
-            realTextView?.setText(text)
+            realTextView?.text = text
         }
     }
 }

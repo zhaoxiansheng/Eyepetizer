@@ -66,17 +66,17 @@ inline fun <reified T : Activity> Activity.toAnimActivityWithParceable(data: Par
 fun View.durationFormat(duration: Long?): String {
     val minute = duration!! / 60
     val second = duration % 60
-    if (minute <= 9) {
+    return if (minute <= 9) {
         if (second <= 9) {
-            return "0${minute}' 0${second}''"
+            "0$minute' 0$second''"
         } else {
-            return "0${minute}' ${second}''"
+            "0$minute' $second''"
         }
     } else {
         if (second <= 9) {
-            return "${minute}' 0${second}''"
+            "$minute' 0$second''"
         } else {
-            return "${minute}' ${second}''"
+            "$minute' $second''"
         }
     }
 }
@@ -98,13 +98,13 @@ fun View.timeFormat(time: Long): String {
             //是今天
             val hours = timeCalendar.get(Calendar.HOUR_OF_DAY)
             val minues = timeCalendar.get(Calendar.MINUTE)
-            return "${if (hours < 10) "0" + hours else hours}:${if (minues < 10) "0" + minues else minues}"
+            return "${if (hours < 10) "0$hours" else hours}:${if (minues < 10) "0$minues" else minues}"
         }
     }
     val year = timeCalendar.get(Calendar.YEAR)
     val month = timeCalendar.get(Calendar.MONTH)
     val day = timeCalendar.get(Calendar.DAY_OF_MONTH)
-    return "${year}/${if (month < 10) "0" + month else month}/${if (day < 10) "0" + day else day}"
+    return "$year/${if (month < 10) "0$month" else month}/${if (day < 10) "0$day" else day}"
 }
 
 /**
@@ -117,14 +117,11 @@ fun View.timePreFormat(time: Long): String {
 
 
     val min = pre / 1000 / 60
-    if (min<1){
-        return "刚刚"
-    }else if(min<60){
-        return ""+min+"分钟前"
-    }else if(min<60*24){
-        return ""+min/60+"小时前"
-    }else {
-        return ""+min/60/24+"天前"
+    return when {
+        min<1 -> "刚刚"
+        min<60 -> ""+min+"分钟前"
+        min<60*24 -> ""+min/60+"小时前"
+        else -> ""+min/60/24+"天前"
     }
 }
 

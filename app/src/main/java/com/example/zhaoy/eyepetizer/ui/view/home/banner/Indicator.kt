@@ -8,10 +8,9 @@ import android.view.View
 class Indicator(context: Context) : View(context) {
 
 
-    private val paint: Paint
+    private val paint: Paint = Paint()
 
     init {
-        paint = Paint()
         paint.isAntiAlias = true
         setState(false)
     }

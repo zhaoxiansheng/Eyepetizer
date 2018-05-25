@@ -38,7 +38,7 @@ class StandardVideoItem : FrameLayout {
         }
         val cover = data?.cover?.feed
         var avatar = data?.author?.icon
-        var avatarRes = R.mipmap.pgc_default_avatar
+        val avatarRes = R.mipmap.pgc_default_avatar
 
         if (avatar == null || "" == avatar) {
             avatar = data?.provider?.icon
@@ -50,8 +50,8 @@ class StandardVideoItem : FrameLayout {
             override fun setResource(resource: Bitmap?) {
                 super.setResource(resource)
                 val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, resource)
-                circularBitmapDrawable.setCircular(true);
-                iv_avatar.setImageDrawable(circularBitmapDrawable);
+                circularBitmapDrawable.isCircular = true
+                iv_avatar.setImageDrawable(circularBitmapDrawable)
             }
         }
         if (avatar == null || "" == avatar) {
@@ -59,29 +59,27 @@ class StandardVideoItem : FrameLayout {
         } else {
             Glide.with(context).load(avatar).asBitmap().centerCrop().into(ivAvatarCircle)
         }
-        tv_title.setText(item.data?.title)
+        tv_title.text = item.data?.title
         var tagText = ""
-        if (type.equals("feed")) {
+        if (type == "feed") {
             tagText = ""
-        } else if (type.equals("categorydetail")) {
-            if(data?.author!=null){
-                tagText = data?.author?.name + " / "
-            }else if(data?.provider!=null){
-                tagText = data?.provider?.name + " / "
-            }else{
-                tagText = ""
+        } else if (type == "categorydetail") {
+            tagText = when {
+                data?.author!=null -> data.author.name + " / "
+                data?.provider!=null -> data.provider.name + " / "
+                else -> ""
             }
         }
         data?.tags?.take(4)?.forEach { tagText += (it.name + " / ") }
         val timeFromat = durationFormat(data?.duration)
         tagText += timeFromat
-        tv_tag.setText(tagText)
+        tv_tag.text = tagText
 
-        if (type.equals("feed")) {
-            tv_tag2.setText(data?.category)
-        } else if (type.equals("categorydetail")) {
+        if (type == "feed") {
+            tv_tag2.text = data?.category
+        } else if (type == "categorydetail") {
             data?.date?.let {
-                tv_tag2.setText(timePreFormat(it))
+                tv_tag2.text = timePreFormat(it)
             }
         }
 

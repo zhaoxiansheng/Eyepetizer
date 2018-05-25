@@ -2,6 +2,7 @@ package com.example.zhaoy.eyepetizer.ui.view.home
 
 import android.animation.Animator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.RecyclerView
@@ -25,25 +26,25 @@ class PullRecyclerView : RecyclerView {
     }
 
 
-    val pullDistance = 300//下拉高度达到这个的时候，松开手才会刷新
-    var originalFirstItemHeight = 0
-    var originalFirstItemWeight = 0
-    var downY = -1
+    private val pullDistance = 300//下拉高度达到这个的时候，松开手才会刷新
+    private var originalFirstItemHeight = 0
+    private var originalFirstItemWeight = 0
+    private var downY = -1
     //down之后下次up之前，这个值不变，用来实现loading的缩放比例
-    var constDownY = -1
-    var constUpY = -1f
-    var canRefresh = false
-    var isFirstMove = true
-    var tempWidth = -1
+    private var constDownY = -1
+    private var constUpY = -1f
+    private var canRefresh = false
+    private var isFirstMove = true
+    private var tempWidth = -1
     var dx = 0
-    var homeBanner: HomeBanner? = null
+    private var homeBanner: HomeBanner? = null
 
     var willRefresh = false//松手后可刷新
 
-    var mLastMotionY = 0f
-    var mLastMotionX = 0f
-    var deltaY = 0f
-    var deleaX = 0f
+    private var mLastMotionY = 0f
+    private var mLastMotionX = 0f
+    private var deltaY = 0f
+    private var deltaX = 0f
     override fun onInterceptTouchEvent(e: MotionEvent?): Boolean {
         var resume = super.onInterceptTouchEvent(e)
         when (e?.action) {
@@ -53,15 +54,15 @@ class PullRecyclerView : RecyclerView {
                 mLastMotionX = e.x
                 downY = e.y.toInt()
                 constDownY = e.y.toInt()
-                resume = false;
+                resume = false
             }
             MotionEvent.ACTION_MOVE -> {
                 // deltaY > 0 是向下运动,< 0是向上运动
                 deltaY = e.y.minus(mLastMotionY)
-                deleaX = e.x.minus(mLastMotionX)
+                deltaX = e.x.minus(mLastMotionX)
 
-                if (Math.abs(deleaX) > Math.abs(deltaY)) {
-                    resume = false;
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    resume = false
                 } else {
                     //当前正处于滑动
                     if (!canScrollVertically(-1) && !willRefresh) {
@@ -75,9 +76,10 @@ class PullRecyclerView : RecyclerView {
             }
 
         }
-        return resume;
+        return resume
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(e: MotionEvent?): Boolean {
 
         when (e?.action) {
@@ -107,7 +109,7 @@ class PullRecyclerView : RecyclerView {
                         }
 
 
-                        var fl = e.y - constDownY//fl从1-pullDistance   缩放比例从0-1
+                        val fl = e.y - constDownY//fl从1-pullDistance   缩放比例从0-1
                         if ((fl <= 0)) {
                             return true
                         }
@@ -128,7 +130,7 @@ class PullRecyclerView : RecyclerView {
 
 
                             val ratio = (1f / (0.004 * fl1 + 1)).toFloat()//实现阻尼效果
-                            dY = dY * ratio
+                            dY *= ratio
                             layoutParams.height = (Math.max((layoutParams.height + dY).toInt(), originalFirstItemHeight))
                             tempWidth = (Math.max((tempWidth + dY * originalFirstItemWeight / originalFirstItemHeight).toInt(), originalFirstItemWeight))
                             downY = e.y.toInt()
@@ -192,9 +194,8 @@ class PullRecyclerView : RecyclerView {
             if (loading.scaleX == 1f) {
                 willRefresh = true
             }
-            var dYForView = layoutParams!!.height - originalFirstItemHeight
+            val dYForView = layoutParams!!.height - originalFirstItemHeight
 
-//            layoutParams!!.height, originalFirstItemHeight
             val homeBannerAnimator = ValueAnimator.ofInt(layoutParams.height, originalFirstItemHeight)
             homeBannerAnimator
                     .addUpdateListener { animation ->
@@ -214,8 +215,8 @@ class PullRecyclerView : RecyclerView {
                         adjustViewPager(viewpager, dx)
 
                         if (!willRefresh) {
-                            var distanceY: Float = (layoutParams.height - originalFirstItemHeight) * 1f//算出来的是从view增加的高度到0的值，需要把它映射到手指滑动的高度到0
-                            var fl = distanceY * ((constUpY - constDownY) / dYForView)//映射
+                            val distanceY: Float = (layoutParams.height - originalFirstItemHeight) * 1f//算出来的是从view增加的高度到0的值，需要把它映射到手指滑动的高度到0
+                            val fl = distanceY * ((constUpY - constDownY) / dYForView)//映射
                             setLoadingScale(fl)
 
                         }
@@ -233,14 +234,14 @@ class PullRecyclerView : RecyclerView {
 
                 override fun onAnimationEnd(animation: Animator?) {
                     if (willRefresh) {
-                        onRefreshListner?.onRefresh()
+                        mOnRefreshListener?.onRefresh()
                         loading.startAnimation(loadAnimation)
                     } else {
                         hideLoading()
                     }
                 }
             })
-            homeBannerAnimator.setDuration(100)
+            homeBannerAnimator.duration = 100
             homeBannerAnimator.start()
         }
 
@@ -261,7 +262,7 @@ class PullRecyclerView : RecyclerView {
         loading.scaleY = distance
     }
 
-    fun adjustViewPager(viewpager: ViewPager, dx: Int) {
+    private fun adjustViewPager(viewpager: ViewPager, dx: Int) {
         viewpager.translationX = -(dx * 1f / 2)
     }
 
@@ -272,7 +273,7 @@ class PullRecyclerView : RecyclerView {
         imageView
     }
 
-    val loadingView by lazy {
+    private val loadingView by lazy {
         val frameLayout = RelativeLayout(context)
         frameLayout.setBackgroundColor(0xaa000000.toInt())
         frameLayout.gravity = Gravity.CENTER
@@ -282,7 +283,7 @@ class PullRecyclerView : RecyclerView {
     }
 
 
-    var hasShow: Boolean = false
+    private var hasShow: Boolean = false
     fun showLoading(viewGroup: ViewGroup) {
         hasShow = true
         viewGroup.addView(loadingView)
@@ -302,10 +303,10 @@ class PullRecyclerView : RecyclerView {
         fun onRefresh()
     }
 
-    var onRefreshListner: OnRefreshListener? = null
+    var mOnRefreshListener : OnRefreshListener? = null
 
     fun setOnRefreshListener(listener: OnRefreshListener) {
-        this.onRefreshListner = listener
+        this.mOnRefreshListener = listener
     }
 
 }

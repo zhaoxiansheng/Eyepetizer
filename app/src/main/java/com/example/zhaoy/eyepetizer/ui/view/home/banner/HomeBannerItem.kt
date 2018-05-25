@@ -23,9 +23,7 @@ class HomeBannerItem : FrameLayout {
         setUpView()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-
-    }
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
 
     var isVideo = false
@@ -38,7 +36,7 @@ class HomeBannerItem : FrameLayout {
         val feedImgUrl = data.data?.cover?.feed
         Glide.with(context).load(feedImgUrl).centerCrop().into(imageView)
 
-        if (thumbPlayUrl == null || "".equals(thumbPlayUrl)) {
+        if (thumbPlayUrl == null || "" == thumbPlayUrl) {
             isVideo = false
             videoView.visibility = View.GONE
         } else {
@@ -49,25 +47,25 @@ class HomeBannerItem : FrameLayout {
         }
     }
 
-    var isInitVideoView = false
+    private var isInitVideoView = false
 
     private fun initVideoView() {
         isInitVideoView = true
         videoView.setVideoAllCallBack(object : EmptyControlVideo.EmptyControlVideoCallBack() {
             override fun onPrepared(url: String?, vararg objects: Any?) {
-                Log.d(TAG, "onPrepared");//加载成功
+                Log.d(TAG, "onPrepared")//加载成功
                 imageView.visibility = View.INVISIBLE
             }
 
             override fun onAutoComplete(url: String?, vararg objects: Any?) {
-                Log.d(TAG, "onAutoComplete");//播放完成
+                Log.d(TAG, "onAutoComplete")//播放完成
                 imageView.visibility = View.VISIBLE
                 videoView.startPlayLogic()
 
             }
 
             override fun onPlayError(url: String?, vararg objects: Any?) {
-                Log.d(TAG, "onPlayError");
+                Log.d(TAG, "onPlayError")
                 imageView.visibility = View.VISIBLE
                 videoView.startPlayLogic()
             }
@@ -90,8 +88,8 @@ class HomeBannerItem : FrameLayout {
     fun releasePlayer() {
         isInitVideoView = false
         if (videoView.visibility == View.VISIBLE) {
-            videoView.setStandardVideoAllCallBack(null);
-            GSYVideoPlayer.releaseAllVideos();
+            videoView.setStandardVideoAllCallBack(null)
+            GSYVideoPlayer.releaseAllVideos()
         }
     }
 
