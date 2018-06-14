@@ -22,7 +22,7 @@ class HomeBanner : FrameLayout {
         initListener()
     }
 
-    fun setData(itemList:ArrayList<Item>){
+    fun setData(itemList: ArrayList<Item>) {
         itemList.filter { item -> item.type == "banner2" }.forEach { item -> itemList.remove(item) }
         bannerAdapter.datas = itemList
         bannerAdapter.notifyDataSetChanged()
@@ -64,10 +64,10 @@ class HomeBanner : FrameLayout {
 
     }
 
-    private var currentTitlePostion=0
+    private var currentTitlePosition = 0
 
     private fun setTitleSlogan(position: Int) {
-        currentTitlePostion=position
+        currentTitlePosition = position
         val bannerItemData = bannerAdapter.datas!![position]
         tvTitle.text = bannerItemData.data?.title
         tvSlogan.text = bannerItemData.data?.slogan
@@ -95,12 +95,12 @@ class HomeBanner : FrameLayout {
         tvTitle.textSize = 52f
         tvTitle.color = Color.WHITE
         tvTitle.isBold = true
-        tvTitle.marginBottom=DisplayManager.dip2px(5f)?.toFloat()!!
-        tvTitle.layoutParams=LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+        tvTitle.marginBottom = DisplayManager.dip2px(5f)?.toFloat()!!
+        tvTitle.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
 
         tvSlogan.textSize = 33f
         tvSlogan.color = Color.WHITE
-        tvSlogan.layoutParams=LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+        tvSlogan.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
 
 
         indicators.gravity = Gravity.CENTER_HORIZONTAL

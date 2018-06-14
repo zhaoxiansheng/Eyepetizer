@@ -46,7 +46,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
             }
             TYPE_STANDARD -> (holder?.itemView as StandardVideoItem).let {
                 it.setOnClickListener { v -> v.context.toActivityWithSerializable<DetailActivity>(itemList[position + bannerItemListCount - 1]) }
-                it.setData(itemList[position + bannerItemListCount - 1],"feed")
+                it.setData(itemList[position + bannerItemListCount - 1], "feed")
             }
 
             TYPE_HEADER_TEXT -> (holder?.itemView as HomeTextHeaderItem).setHeaderText(itemList[position + bannerItemListCount - 1].data?.text)

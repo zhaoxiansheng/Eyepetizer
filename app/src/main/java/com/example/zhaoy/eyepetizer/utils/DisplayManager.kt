@@ -81,7 +81,7 @@ object DisplayManager {
      * @return
      */
     fun getRealHeight(px: Int): Int? {
-        //ui图的宽度
+        //ui图的高度
         return getRealHeight(px, STANDARD_HEIGHT.toFloat())
     }
 

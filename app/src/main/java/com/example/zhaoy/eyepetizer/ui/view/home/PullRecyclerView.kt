@@ -249,7 +249,7 @@ class PullRecyclerView : RecyclerView {
     }
 
     /**
-     * 根据距离原始位置的高度，计算loasing的缩放值
+     * 根据距离原始位置的高度，计算loading的缩放值
      */
     private fun setLoadingScale(distanceY: Float) {
         var distance = (distanceY - 150) / pullDistance//下拉超过150之后开始逐渐出现loading
@@ -283,6 +283,9 @@ class PullRecyclerView : RecyclerView {
     }
 
 
+    /**
+     * 是否展示刷新
+     */
     private var hasShow: Boolean = false
     fun showLoading(viewGroup: ViewGroup) {
         hasShow = true
@@ -303,7 +306,7 @@ class PullRecyclerView : RecyclerView {
         fun onRefresh()
     }
 
-    var mOnRefreshListener : OnRefreshListener? = null
+    var mOnRefreshListener: OnRefreshListener? = null
 
     fun setOnRefreshListener(listener: OnRefreshListener) {
         this.mOnRefreshListener = listener
