@@ -9,21 +9,17 @@ import java.util.ArrayList
 
 class CategoryPresenter(view: CategoryContract.IView) : CategoryContract.IPresenter{
 
-    val categoryView: CategoryContract.IView
+    val categoryView: CategoryContract.IView = view
 
-    val categoryModel: CategoryModel by lazy {
+    private val categoryModel: CategoryModel by lazy {
         CategoryModel()
-    }
-
-    init {
-        categoryView = view
     }
 
     override fun requestData() {
 
         categoryModel.getCategories().subscribe(object : BaseObserver<ArrayList<ResponseClasses.Categories>>(MyApplication.getContext(), false) {
-            override fun onSuccess(categories: ArrayList<ResponseClasses.Categories>) {
-                categoryView.showCategory(categories)
+            override fun onSuccess(t: ArrayList<ResponseClasses.Categories>) {
+                categoryView.showCategory(t)
             }
         })
     }

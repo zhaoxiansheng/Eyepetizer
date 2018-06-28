@@ -3,7 +3,6 @@ package com.example.zhaoy.eyepetizer.ui.view.category
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.bumptech.glide.DrawableRequestBuilder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.zhaoy.eyepetizer.R
@@ -25,7 +24,10 @@ class CategoryItem : FrameLayout {
     }
 
     fun setData(category: ResponseClasses.Categories) {
-        tv_name.text = "#"+category.name
+        val s = StringBuilder()
+        s.append("#")
+        s.append(category.name)
+        tv_name.text = s
         Glide.with(context)
                 .load(category.bgPicture)
                 .centerCrop()

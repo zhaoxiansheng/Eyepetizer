@@ -29,7 +29,7 @@
         <activity android:name=".ui.activity.DetailActivity"/>
 
         <activity
-            android:name=".ui.activity.TestActivity" />
+            android:name=".ui.activity.CategoryDetailActivity" />
     </application>
 
 </manifest>

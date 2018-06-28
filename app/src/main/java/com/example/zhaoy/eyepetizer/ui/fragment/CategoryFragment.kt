@@ -12,8 +12,8 @@ import com.example.zhaoy.eyepetizer.R
 import com.example.zhaoy.eyepetizer.bean.ResponseClasses
 import com.example.zhaoy.eyepetizer.mvp.contract.CategoryContract
 import com.example.zhaoy.eyepetizer.mvp.presenter.CategoryPresenter
-import com.example.zhaoy.eyepetizer.toActivityWithParceable
-import com.example.zhaoy.eyepetizer.ui.activity.TestActivity
+import com.example.zhaoy.eyepetizer.toAnimActivityWithParcelable
+import com.example.zhaoy.eyepetizer.ui.activity.CategoryDetailActivity
 import com.example.zhaoy.eyepetizer.ui.adapter.CategoryAdapter
 import com.example.zhaoy.eyepetizer.ui.base.BaseFragment
 import com.example.zhaoy.eyepetizer.ui.base.tabsId
@@ -71,7 +71,7 @@ class CategoryFragment : BaseFragment(tabId = tabsId[1]), CategoryContract.IView
             }
 
         })
-        //todo 由于recycleView 加载多图卡顿 监听滑动事件 当滑动停止时 加载图片 依旧卡顿
+
         rv_category.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -88,7 +88,7 @@ class CategoryFragment : BaseFragment(tabId = tabsId[1]), CategoryContract.IView
         })
 
         adapter.onClick = { categories ->
-            activity?.toActivityWithParceable<TestActivity>(categories)
+            activity?.toAnimActivityWithParcelable<CategoryDetailActivity>(categories)
         }
         categoryPresenter.requestData()
     }
@@ -108,7 +108,7 @@ class CategoryFragment : BaseFragment(tabId = tabsId[1]), CategoryContract.IView
         super.setupToolbar()
         activity?.toolbar?.setBackgroundColor(0xddffffff.toInt())
         activity?.iv_search?.setImageResource(R.mipmap.ic_action_search)
-        activity?.tv_bar_title?.setText("分类")
+        activity?.tv_bar_title?.text = "分类"
         return true
     }
 }

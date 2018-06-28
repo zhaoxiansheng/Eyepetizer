@@ -36,10 +36,10 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val itemViewType = getItemViewType(position)
-        holder?.itemView?.setTag(data[position].bgPicture)
+        holder?.itemView?.tag = data[position].bgPicture
         when (itemViewType) {
             TYPE_STANDARD -> {
-                if (data[position].bgPicture == holder?.itemView?.getTag()){
+                if (data[position].bgPicture == holder?.itemView?.tag){
                     (holder.itemView as CategoryItem).setData(data[position])
                     holder.itemView.setOnClickListener { onClick?.invoke(data[position]) }
                 }

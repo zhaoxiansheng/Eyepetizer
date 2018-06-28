@@ -38,7 +38,7 @@ inline fun <reified T : Activity> Context.toActivity() {
     startActivity(Intent(this, T::class.java))
 }
 
-inline fun <reified T : Activity> Context.toActivityWithParceable(data: Parcelable){
+inline fun <reified T : Activity> Context.toActivityWithParcelable(data: Parcelable){
     val intent = Intent(this, T::class.java)
     intent.putExtra("data", data)
     startActivity(intent)
@@ -53,7 +53,7 @@ inline fun <reified T : Activity> Activity.toAnimActivity(){
     }
 }
 
-inline fun <reified T : Activity> Activity.toAnimActivityWithParceable(data: Parcelable) {
+inline fun <reified T : Activity> Activity.toAnimActivityWithParcelable(data: Serializable) {
     val intent = Intent(this, T::class.java)
     intent.putExtra("data", data)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

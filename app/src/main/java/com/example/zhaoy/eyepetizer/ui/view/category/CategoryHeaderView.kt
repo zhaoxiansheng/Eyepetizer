@@ -1,4 +1,4 @@
-package com.xk.eyepetizer.ui.view.category
+package com.example.zhaoy.eyepetizer.ui.view.category
 
 import android.app.Activity
 import android.content.Context
@@ -9,23 +9,23 @@ import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
-import com.xk.eyepetizer.R
-import com.xk.eyepetizer.mvp.model.bean.Category
-import com.xk.eyepetizer.util.DisplayManager
+import com.example.zhaoy.eyepetizer.R
+import com.example.zhaoy.eyepetizer.bean.ResponseClasses
+import com.example.zhaoy.eyepetizer.utils.DisplayManager
 import kotlinx.android.synthetic.main.layout_category_header.view.*
 
 /**
- * Created by xuekai on 2017/9/3.
+ * Created by zhaoy on 2018/6/26.
  */
 class CategoryHeaderView : RelativeLayout {
-    var tvNameStopTop = 0
+    private var tvNameStopTop = 0
 
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
         initView()
     }
 
-    fun initView() {
+    private fun initView() {
         View.inflate(context, R.layout.layout_category_header, this)
 
         back.setOnClickListener { (context as Activity).finish() }
@@ -35,11 +35,11 @@ class CategoryHeaderView : RelativeLayout {
      * 设置折叠的进度，0表示没有折叠，1表示完全折叠
      * tv_name marginTop从100dp->tvNameStopTop
      */
-    fun setCollaspsedProgress(progress: Float) {
+    fun setCollapsedProgress(progress: Float) {
         if ((progress < 0f)) {
             return
         }
-        Log.i("CategoryHeaderView", "setCollaspsedProgress-->${progress}")
+        Log.i("CategoryHeaderView", "setCollapsedProgress-->$progress")
 
         getTvNameStopMarginTop()
 
@@ -59,7 +59,7 @@ class CategoryHeaderView : RelativeLayout {
         if (progress >= 1f) {
             toolbar_bg.setBackgroundColor(0xffffffff.toInt())
             tv_name.setTextColor(Color.BLACK)
-            tv_name.setTypeface(null, Typeface.NORMAL);
+            tv_name.setTypeface(null, Typeface.NORMAL)
             back.setImageResource(R.mipmap.ic_action_back)
         } else {
             toolbar_bg.setBackgroundColor(0x00ffffff)
@@ -78,7 +78,7 @@ class CategoryHeaderView : RelativeLayout {
         }
     }
 
-    fun setData(category: Category) {
+    fun setData(category: ResponseClasses.Categories) {
         Glide.with(context).load(category.headerImage).into(iv_header_image)
         tv_name.text = category.name
         tv_description.text = category.description
