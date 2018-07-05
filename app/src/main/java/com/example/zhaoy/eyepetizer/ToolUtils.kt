@@ -5,6 +5,7 @@ import android.app.ActivityOptions
 import android.app.Fragment
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Parcelable
 import android.view.View
@@ -129,4 +130,38 @@ inline fun <reified T : Activity> Context.toActivityWithSerializable(data: Seria
     val intent = Intent(this, T::class.java)
     intent.putExtra("data", data)
     startActivity(intent)
+}
+
+fun Context.dataFormat(total: Long): String {
+    var result = ""
+    var speedReal = 0
+    speedReal = (total / (1024)).toInt()
+    result = if (speedReal < 512) {
+        speedReal.toString() + " KB"
+    } else {
+        val mSpeed = speedReal / 1024.0
+        (Math.round(mSpeed * 100) / 100.0).toString() + " MB"
+    }
+    return result
+}
+
+/**
+ * 1表示wifi
+ */
+fun Context.getNetType(): Int {
+    val connectService = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetworkInfo = connectService.activeNetworkInfo
+
+
+    if (activeNetworkInfo == null || !activeNetworkInfo.isAvailable()) {
+        return 0
+    } else {
+        // NetworkInfo不为null开始判断是网络类型
+        val netType = activeNetworkInfo.type
+        if (netType == ConnectivityManager.TYPE_WIFI) {
+            // wifi net处理
+            return 1
+        }
+    }
+    return 0
 }

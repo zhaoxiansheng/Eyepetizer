@@ -23,7 +23,7 @@ class JumpShowTextView : FrameLayout {
 
     private var realTextView: PercentTextView? = null
 
-    private var withAnimation = true
+    var withAnimation = true
 
     var text: String? = ""
         set(value) {
@@ -66,7 +66,7 @@ class JumpShowTextView : FrameLayout {
 
     var isBold: Boolean = false
     var color: Int = Color.BLACK
-    private var singline = false
+    var singline = false
 
     var textSize: Float = 52F
 

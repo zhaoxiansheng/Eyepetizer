@@ -5,21 +5,21 @@
     android:layout_margin="15dp"
     android:orientation="vertical">
 
-    <com.xk.eyepetizer.ui.view.common.JumpShowTextView
+    <com.example.zhaoy.eyepetizer.ui.view.common.JumpShowTextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp" />
 
-    <com.xk.eyepetizer.ui.view.common.JumpShowTextView
+    <com.example.zhaoy.eyepetizer.ui.view.common.JumpShowTextView
         android:id="@+id/tv_tag"
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp" />
 
-    <com.xk.eyepetizer.ui.view.common.JumpShowTextView
+    <com.example.zhaoy.eyepetizer.ui.view.common.JumpShowTextView
         android:id="@+id/tv_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,47 +27,46 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
-        <com.xk.eyepetizer.ui.view.common.PercentTextView
+        <com.example.zhaoy.eyepetizer.ui.view.common.PercentTextView
             android:id="@+id/tv_favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:drawableLeft="@mipmap/ic_action_favorites_without_padding"
+            android:layout_marginEnd="30dp"
             android:drawablePadding="10dp"
+            android:drawableStart="@mipmap/ic_action_favorites_without_padding"
             android:textColor="@color/white"
             android:textSize="38px" />
 
-        <com.xk.eyepetizer.ui.view.common.PercentTextView
+        <com.example.zhaoy.eyepetizer.ui.view.common.PercentTextView
             android:id="@+id/tv_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:drawableLeft="@mipmap/ic_action_share_without_padding"
+            android:layout_marginEnd="30dp"
             android:drawablePadding="10dp"
+            android:drawableStart="@mipmap/ic_action_share_without_padding"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="38px" />
 
-        <com.xk.eyepetizer.ui.view.common.PercentTextView
+        <com.example.zhaoy.eyepetizer.ui.view.common.PercentTextView
             android:id="@+id/tv_reply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:drawableLeft="@mipmap/ic_action_reply_without_padding"
+            android:layout_marginEnd="30dp"
             android:drawablePadding="10dp"
+            android:drawableStart="@mipmap/ic_action_reply_without_padding"
             android:textColor="@color/white"
             android:textSize="38px" />
 
-        <com.xk.eyepetizer.ui.view.common.PercentTextView
+        <com.example.zhaoy.eyepetizer.ui.view.common.PercentTextView
             android:id="@+id/tv_download"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:drawableLeft="@mipmap/ic_action_offline_without_padding"
+            android:layout_marginEnd="30dp"
             android:drawablePadding="10dp"
+            android:drawableStart="@mipmap/ic_action_offline_without_padding"
             android:text="缓存"
             android:textColor="@color/white"
             android:textSize="38px" />

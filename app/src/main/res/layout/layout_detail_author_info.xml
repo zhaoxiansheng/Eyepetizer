@@ -15,40 +15,40 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:src="@mipmap/pgc_default_avatar" />
 
-    <com.xk.eyepetizer.ui.view.common.PercentTextView
+    <com.example.zhaoy.eyepetizer.ui.view.common.PercentTextView
         android:id="@+id/attention"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="9dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="9dp"
+        android:layout_marginStart="7dp"
         android:background="@drawable/rect_radius"
         android:padding="5dp"
         android:text="+关注"
+        android:textColor="@color/white"
         android:textSize="30px"
-        android:textStyle="bold"
-        android:layout_marginLeft="7dp"
-        android:textColor="@color/white" />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/attention"
-        android:layout_toRightOf="@id/iv_avatar"
+        android:layout_toEndOf="@id/iv_avatar"
+        android:layout_toStartOf="@id/attention"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <com.xk.eyepetizer.ui.view.common.JumpShowTextView
+        <com.example.zhaoy.eyepetizer.ui.view.common.JumpShowTextView
             android:id="@+id/tv_author_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.xk.eyepetizer.ui.view.common.JumpShowTextView
+        <com.example.zhaoy.eyepetizer.ui.view.common.JumpShowTextView
             android:id="@+id/tv_author_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

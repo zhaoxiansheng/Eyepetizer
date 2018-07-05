@@ -55,4 +55,20 @@ public class HttpRequest {
         Observable<Issue> issue = MyApplication.iApi.getIssue(url);
         return RetrofitFactory.INSTANCE.doHttpRequest(issue);
     }
+
+    /**
+     * 根据item id获取相关视频
+     */
+    public static Observable<Issue> getRelatedData(long id){
+        Observable<Issue> relateData = MyApplication.iApi.getRelatedData(id);
+        return RetrofitFactory.INSTANCE.doHttpRequest(relateData);
+    }
+
+    /**
+     * 获取回复
+     */
+    public static Observable<Issue> getReply(long videoId){
+        Observable<Issue> reply = MyApplication.iApi.getReply(videoId);
+        return RetrofitFactory.INSTANCE.doHttpRequest(reply);
+    }
 }

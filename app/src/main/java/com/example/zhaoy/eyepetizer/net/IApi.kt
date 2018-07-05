@@ -12,7 +12,7 @@ import java.util.ArrayList
 interface IApi {
 
     @GET("v4/categories/")
-    fun getCategories() : Observable<ArrayList<ResponseClasses.Categories>>
+    fun getCategories(): Observable<ArrayList<ResponseClasses.Categories>>
 
     /**
      * banner+一页数据，num=1

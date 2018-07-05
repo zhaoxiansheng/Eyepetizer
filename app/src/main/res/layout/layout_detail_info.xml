@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.xk.eyepetizer.ui.view.detail.DetailMovieInfoView
+    <com.example.zhaoy.eyepetizer.ui.view.detial.DetailMovieInfoView
         android:background="#44000000"
         android:id="@+id/detailMovieInfoView"
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#88ffffff" />
-    <com.xk.eyepetizer.ui.view.detail.DetailAuthorView
+    <com.example.zhaoy.eyepetizer.ui.view.detial.DetailAuthorView
         android:id="@+id/detailAuthorView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

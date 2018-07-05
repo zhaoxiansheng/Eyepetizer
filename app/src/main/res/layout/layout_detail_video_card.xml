@@ -27,14 +27,14 @@
         android:layout_toRightOf="@id/iv_video_card"
         android:orientation="vertical">
 
-        <com.xk.eyepetizer.ui.view.common.JumpShowTextView
+        <com.example.zhaoy.eyepetizer.ui.view.common.JumpShowTextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp" />
 
-        <com.xk.eyepetizer.ui.view.common.JumpShowTextView
+        <com.example.zhaoy.eyepetizer.ui.view.common.JumpShowTextView
             android:id="@+id/tv_tag"
             android:layout_width="match_parent"
 
